@@ -1,6 +1,7 @@
 package com.tarus.cars.controller;
 
 import com.tarus.cars.entity.Car;
+import com.tarus.cars.error.CarNotFoundException;
 import com.tarus.cars.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class CarController {
     }
 
     @GetMapping("/cars/{id}")
-    public Car fetchCarById(@PathVariable("id") Long carId){
+    public Car fetchCarById(@PathVariable("id") Long carId) throws CarNotFoundException {
         return carService.fetchCarById(carId);
     }
 

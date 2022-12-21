@@ -1,6 +1,7 @@
 package com.tarus.cars.service;
 
 import com.tarus.cars.entity.Car;
+import com.tarus.cars.error.CarNotFoundException;
 import com.tarus.cars.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car fetchCarById(Long carId) {
-        return carRepository.findById(carId).get();
+    public Car fetchCarById(Long carId) throws CarNotFoundException {
+        Optional<Car> carDB = carRepository.findById(carId);
+        if(carDB.isEmpty()){
+            throw new CarNotFoundException("Car Not Available");
+
+        }
+        return carDB.get();
     }
 
     @Override

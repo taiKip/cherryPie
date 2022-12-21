@@ -1,6 +1,7 @@
 package com.tarus.cars.service;
 
 import com.tarus.cars.entity.Car;
+import com.tarus.cars.error.CarNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface CarService {
 
   public List<Car> fetchCarList();
 
-  public Car fetchCarById(Long carId);
+  public Car fetchCarById(Long carId) throws CarNotFoundException;
 
    public void deleteCarById(Long carId);
 
